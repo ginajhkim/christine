@@ -1,36 +1,57 @@
 <template>
-    <div>
-    <b-navbar toggleable="lg" variant="custom">
-        <b-navbar-brand href="#">NavBar</b-navbar-brand>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-            <b-nav-item href="#">Link</b-nav-item>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-
-            <b-nav-item-dropdown right>
-            <!-- Using 'button-content' slot -->
-            <template slot="button-content"><em>User</em></template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
-        </b-navbar-nav>
-        </b-collapse>
-    </b-navbar>
+<nav id="nav" v-on="mounted()" class="navbar navbar-expand-sm fixed-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand">
+          <router-link to="/">
+          <img src="../assets/logo_transparent1.png">
+          </router-link>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <router-link class="nav-link" to="Gallery">GALLERY</router-link>
+                </li>
+                <li class="nav-item active">
+                    <router-link class="nav-link" to="About">ABOUT</router-link>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 </template>
 
 <script>
 export default {
+  methods: {
+    mounted () {
+      document.onreadystatechange = () => {
+         if (document.readyState === 'complete') {
+          document.getElementById('nav').style.opacity = 1
+        }
+      }
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  #nav {
+    opacity: 0;
+    transition:2s;
+    width: 100%;
+  }
+  
+  .navbar-brand img {
+    width: 80px;
+    height: 40px;
+  }
+
+  .navbar-brand {
+    margin: 0;
+  }
 
 </style>
